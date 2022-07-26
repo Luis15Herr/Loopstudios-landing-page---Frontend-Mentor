@@ -10,19 +10,6 @@ body {
   position: relative;
 }
 
-body::after {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(./design/desktop-design.jpg);
-  position: absolute;
-  background-position: top center;
-  background-repeat: no-repeat;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
 .container {
   width: 1114px;
   margin: auto;
@@ -120,6 +107,7 @@ header {
   font-family: "Alata", sans-serif;
   margin-bottom: 5px;
   line-height: 25px;
+  color: #8c8c8c;
 }
 
 .creations {
@@ -155,6 +143,10 @@ header {
   letter-spacing: 5px;
 }
 
+.creations__btn--mobile {
+  display: none;
+}
+
 .creations__wrapper {
   display: -ms-grid;
   display: grid;
@@ -178,6 +170,10 @@ header {
 .card__img {
   position: absolute;
   z-index: 5;
+}
+
+.card__img--mobile {
+  display: none;
 }
 
 .card__title {
@@ -248,11 +244,19 @@ footer {
 
 .copy {
   font-family: "Alata", sans-serif;
+  color: #8c8c8c;
 }
 
 .attribution {
-  font-size: 11px;
+  font-size: 13px;
+  position: absolute;
   text-align: center;
+  bottom: 15px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  color: white;
+  font-family: "Alata", sans-serif;
 }
 
 .attribution a {
@@ -292,17 +296,18 @@ footer {
 @media screen and (max-width: 750px) {
   .container {
     width: 100%;
-    padding: 0 48px;
+    padding: 0 26px;
   }
   .menu {
     display: none;
   }
   .banner {
     background-image: url(./images/mobile/image-hero.jpg);
+    height: 740px;
   }
   .banner__txt {
-    padding: 50px;
-    font-size: 1.5em;
+    padding: 22px 25px;
+    font-size: 1.95em;
     width: 100%;
     height: auto;
     -webkit-transform: translateY(-50%);
@@ -310,7 +315,7 @@ footer {
     top: 50%;
   }
   .about {
-    padding-top: 192px;
+    padding-top: 105px;
   }
   .about__img {
     display: none;
@@ -318,7 +323,7 @@ footer {
   .about__img-mobile {
     display: block;
     width: 100%;
-    margin-bottom: 95px;
+    margin-bottom: 55px;
   }
   .about__txt {
     position: initial;
@@ -327,17 +332,117 @@ footer {
     text-align: center;
   }
   .about__title {
-    font-size: 1.8em;
+    font-size: 2.4em;
+    margin-bottom: 20px;
+  }
+  .about__p {
+    padding: 0 15px;
+    font-size: 1.13em;
+    line-height: 28px;
+  }
+  .creations {
+    padding-top: 100px;
+    margin-bottom: 108px;
+  }
+  .creations__heading {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 56px;
+  }
+  .creations__title {
+    font-size: 2.5em;
   }
   .creations__wrapper {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+    grid-row-gap: 28px;
+  }
+  .card {
+    height: 135px;
+    width: 100%;
+  }
+  .card__title {
+    width: 60%;
+    font-size: 1.7em;
+    padding: 22px 24px;
+    letter-spacing: 1px;
+  }
+  .card__img {
+    display: none;
+  }
+  .card__img--mobile {
+    display: block;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+  }
+  .creations__btn {
+    display: none;
+  }
+  .creations__btn--mobile {
+    display: block;
+    width: 180px;
+    text-align: center;
+    position: relative;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    left: 50%;
+    margin-top: 40px;
+    padding: 11px;
+  }
+  footer {
+    height: auto;
+    padding-bottom: 60px;
+  }
+  .footer__logo {
+    margin-bottom: 35px;
+  }
+  .footer__logo svg {
+    -webkit-transform: scale(0.85);
+            transform: scale(0.85);
+    left: 0;
+  }
+  .footer__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-top: 60px;
   }
   .footer-menu {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .footer-menu__item {
+    margin-right: 0;
+    font-size: 1.1em;
+    margin-bottom: 23px;
+  }
+  .socials {
+    margin-top: 36px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .socials__item {
+    margin: 0 11px;
+    margin-bottom: 22px;
+  }
+  .socials__item svg {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  .copy {
+    font-size: 1.14em;
   }
 }
 /*# sourceMappingURL=style.css.map */
