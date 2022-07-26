@@ -28,12 +28,18 @@ header {
   transform: translateX(-50%);
   left: 50%;
   width: 100%;
+  z-index: 5000;
 }
 .header__wrapper {
   display: flex;
   justify-content: space-between;
   padding-top: 65px;
 }
+.mobile-menu__trigger,
+.mobile-menu {
+  display: none;
+}
+
 .menu {
   list-style: none;
   display: flex;
@@ -41,9 +47,65 @@ header {
   margin-right: 3px;
 }
 .menu__item {
-  color: $White;
   margin-left: 33px;
   font-family: $font400;
+}
+.menu__link {
+  color: $White;
+  text-decoration: none;
+  position: relative;
+  &::before {
+    width: 0;
+    bottom: -10px;
+    background: white;
+    position: absolute;
+    height: 2px;
+    transform: translateX(-50%);
+    left: 50%;
+    content: "";
+    transition: ease 0.2s;
+  }
+  &:hover {
+    &::before {
+      width: 60%;
+      transition: ease 0.2s;
+    }
+  }
+}
+.fixed {
+  position: fixed;
+}
+.mobile__nav {
+  z-index: 50;
+  position: absolute;
+  left: -5000px;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile__nav--active {
+  -webkit-transform: translateX(5000px);
+  transform: translateX(5000px);
+  background: $Black;
+}
+.mobile__nav__head {
+  display: flex;
+  justify-content: space-between;
+}
+.mobile-menu {
+  margin-top: 30%;
+  .menu__item {
+    margin-left: 0;
+    margin-bottom: 35px;
+
+    a {
+      text-transform: uppercase;
+      font-family: $font300;
+      font-size: 2em;
+    }
+  }
 }
 .banner {
   background-image: url(./images/desktop/image-hero.jpg);
@@ -111,13 +173,35 @@ header {
   font-family: $font300;
 }
 .creations__btn {
-  border: 2px solid $Black;
   text-transform: uppercase;
   color: $Black;
   text-decoration: none;
   font-family: $font400;
   padding: 8px 35px;
   letter-spacing: 5px;
+  position: relative;
+  border: 2px solid $Black;
+  overflow: hidden;
+  &::after {
+    content: "";
+    background: $Black;
+    position: absolute;
+    z-index: -1;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(0, 1);
+    transition: all 0.3s ease-out;
+  }
+  &:hover {
+    color: $White;
+    &::after {
+      transform: scale(1, 1);
+      transition: all 0.3s ease-out;
+    }
+  }
 }
 .creations__btn--mobile {
   display: none;
@@ -134,10 +218,23 @@ header {
   position: relative;
   display: flex;
   width: 256px;
+
+  &:hover {
+    cursor: pointer;
+    .card__img {
+      opacity: 0.4;
+      transition: all 0.2s ease-out;
+    }
+    .card__title {
+      color: $Black;
+      transition: all 0.2s ease-out;
+    }
+  }
 }
 .card__img {
   position: absolute;
   z-index: 5;
+  transition: all 0.2s ease-out;
 }
 .card__img--mobile {
   display: none;
@@ -151,6 +248,7 @@ header {
   font-size: 2em;
   padding: 33px 40px;
   letter-spacing: 1.5px;
+  transition: all 0.2s ease-out;
 }
 footer {
   background-color: black;
@@ -183,6 +281,28 @@ footer {
 .footer-menu__item {
   font-family: $font400;
   margin-right: 32.5px;
+  a {
+    color: $White;
+    text-decoration: none;
+    position: relative;
+    &::before {
+      width: 0;
+      bottom: -10px;
+      background: white;
+      position: absolute;
+      height: 2px;
+      transform: translateX(-50%);
+      left: 50%;
+      content: "";
+      transition: ease 0.2s;
+    }
+    &:hover {
+      &::before {
+        width: 60%;
+        transition: ease 0.2s;
+      }
+    }
+  }
 }
 .socials {
   margin-top: 3px;
@@ -192,6 +312,26 @@ footer {
 .socials__item {
   margin-left: 16px;
   margin-bottom: 22px;
+  a {
+    position: relative;
+    &::before {
+      width: 0;
+      bottom: -8px;
+      background: white;
+      position: absolute;
+      height: 2px;
+      transform: translateX(-50%);
+      left: 50%;
+      content: "";
+      transition: ease 0.2s;
+    }
+    &:hover {
+      &::before {
+        width: 100%;
+        transition: ease 0.2s;
+      }
+    }
+  }
 }
 .copy {
   font-family: $font400;
@@ -201,7 +341,7 @@ footer {
   font-size: 13px;
   position: absolute;
   text-align: center;
-  bottom: 15px;
+  bottom: 10px;
   transform: translateX(-50%);
   left: 50%;
   color: white;
@@ -243,8 +383,16 @@ footer {
     width: 100%;
     padding: 0 26px;
   }
+  .header__wrapper,
+  .mobile__nav__head {
+    padding-top: 45px;
+  }
   .menu {
     display: none;
+  }
+  .mobile-menu__trigger,
+  .mobile-menu {
+    display: block;
   }
   .banner {
     background-image: url(./images/mobile/image-hero.jpg);
